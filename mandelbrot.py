@@ -161,7 +161,12 @@ class timer():
 
 if __name__ == '__main__':
 
-    
+    current_dir = os.getcwd()
+    if not os.path.isdir(current_dir + r"\generated\animation"):
+        os.makedirs(current_dir + r"\generated\animation")
+        
+    if not os.path.isdir(current_dir + r"\generated\images"):
+        os.makedirs(current_dir + r"\generated\images")
     mandeler = mandelpy()
 
     cpu_count = mandeler.logical_cores
@@ -174,9 +179,11 @@ if __name__ == '__main__':
     processes = []
     q = multiprocessing.JoinableQueue()
     
+    
+    
     if mandeler.cfg.is_video:
         
-        current_dir = os.getcwd()
+        
         location = r"\generated\animation"
         datestr = time.strftime('%H-%M-%S %d-%m-%y', time.localtime())
         path = current_dir + location + "\\" + datestr
