@@ -22,6 +22,7 @@ class mandelpy():
         parser.add_argument('--framerate', required=False)
         parser.add_argument('--seconds', required=False)
         parser.add_argument('--zoom_factor', required=False)
+        parser.add_argument('--zoom')
         
         cfg = parser.parse_args(['--cfg', 'settings.yaml'])
         
@@ -209,7 +210,7 @@ if __name__ == '__main__':
         
     else:
         
-        scale = mandeler.generate_scale(0)
+        scale = mandeler.generate_scale(mandeler.cfg.zoom)
         for i in range(mandeler.cfg.size.y):
             q.put(i)
         
@@ -233,6 +234,3 @@ if __name__ == '__main__':
                 img.putpixel(point[0], point[1])
             
         img.save("mandelbrot.png")
-    
-    
-    
